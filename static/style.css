@@ -1,0 +1,333 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://t.alcy.cc/pc');
+    background-size: cover;
+    background-position: center;
+    filter: blur(10px);
+    z-index: -1;
+}
+
+@keyframes slideUpFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.container {
+    animation: slideUpFadeIn 0.8s ease-out;
+}
+
+.glassmorphic {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 2.5rem;
+}
+
+h1 {
+    color: #fff;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#file-name {
+    margin-bottom: 1.5rem;
+    font-style: italic;
+    color: #ccc;
+}
+
+.button-group-main {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+}
+
+.glass-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border-radius: 100px;
+    padding: 1rem 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.glass-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+}
+
+.glass-btn:disabled {
+    cursor: not-allowed;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: #aaa;
+    transform: none;
+}
+
+.file-label {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+.input-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+    width: 100%;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #eee;
+}
+
+input[type="password"], input[type="text"] {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+input[type="password"]:focus, input[type="text"]:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+input[type="password"]::placeholder, input[type="text"]::placeholder {
+    color: #ccc;
+}
+
+.filename-input-wrapper {
+    display: flex;
+    align-items: center;
+}
+.filename-input-wrapper input {
+    flex-grow: 1;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.filename-suffix {
+    padding: 0.75rem;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-left: none;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    font-weight: bold;
+}
+
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+.modal-content {
+    margin: 15% auto;
+    padding: 2.5rem;
+    width: 80%;
+    max-width: 400px;
+    position: relative;
+    text-align: center;
+    animation: zoomIn 0.3s ease-out;
+}
+.modal-content h2 {
+    color: #fff;
+    margin-bottom: 1.5rem;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.close-btn {
+    color: #fff;
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+.close-btn:hover,
+.close-btn:focus {
+    color: #ccc;
+    text-decoration: none;
+}
+
+.button-group, .button-group-small {
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+}
+.button-group-small {
+    justify-content: flex-start;
+}
+.button-group-small .glass-btn {
+    padding: 0.5rem 1.5rem;
+}
+
+.full-width-btn {
+    width: 100%;
+}
+.small-btn {
+    padding: 0.5rem 1.5rem;
+    font-size: 0.9rem;
+}
+
+.progress-bar-container {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+}
+
+.progress-bar {
+    width: 0;
+    height: 25px;
+    background-color: #E6E6FA;
+    text-align: center;
+    line-height: 25px;
+    color: white;
+    transition: width 1s ease-out;
+}
+
+.status-message {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: 8px;
+    font-weight: bold;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.5s;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+.status-message.success {
+    background-color: rgba(40, 167, 69, 0.5);
+}
+.status-message.error {
+    background-color: rgba(220, 53, 69, 0.5);
+}
+
+.animation-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.animation-overlay.visible {
+    display: flex;
+    opacity: 1;
+}
+.t-symbol-container {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.t-line {
+    position: absolute;
+    background-color: #4CAF50;
+    border-radius: 5px;
+    transform-origin: center;
+}
+.t-vertical {
+    width: 10px;
+    height: 0;
+    bottom: 0;
+    animation: drawVerticalLine 0.4s 0.2s forwards;
+}
+.t-horizontal {
+    width: 0;
+    height: 10px;
+    top: 0;
+    animation: drawHorizontalLine 0.4s 0.6s forwards;
+}
+
+@keyframes drawVerticalLine {
+    to {
+        height: 80px;
+    }
+}
+@keyframes drawHorizontalLine {
+    to {
+        width: 80px;
+    }
+}
