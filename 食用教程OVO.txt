@@ -1,0 +1,3 @@
+这里是小鱼
+在初次运行前建议运行ipt检查本地环境 在运行app.py哦
+如由任何问题请邮送xiaofins@proton.me    主题请备注 RSA反馈
