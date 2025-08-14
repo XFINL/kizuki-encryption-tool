@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文件加密解密工具</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="background"></div>
+
+    <div class="container glassmorphic">
+        <h1>文件加密解密工具</h1>
+
+        <div class="form-container">
+            <span id="file-name">未选择文件</span>
+            
+            <div class="button-group-main">
+                <label for="file-input" class="file-label glass-btn">选择文件</label>
+                <input type="file" id="file-input" hidden required>
+                <button id="open-modal-btn" class="glass-btn" disabled>下一步</button>
+            </div>
+        </div>
+
+        <div id="status-message" class="status-message"></div>
+    </div>
+
+    <div id="encrypt-modal" class="modal">
+        <div class="modal-content glassmorphic">
+            <span class="close-btn">&times;</span>
+            <h2>加密文件</h2>
+            <div class="input-group">
+                <label for="encrypt-password">输入密钥:</label>
+                <input type="password" id="encrypt-password" placeholder="输入或生成一个密钥" required>
+            </div>
+            <div class="input-group button-group-small">
+                <button id="generate-key-btn" class="btn glass-btn small-btn">生成随机密钥</button>
+                <button id="download-key-btn" class="btn glass-btn small-btn" disabled>下载密钥文件</button>
+            </div>
+            <div class="input-group">
+                <label>自定义文件名（可选）:</label>
+                <div class="filename-input-wrapper">
+                    <input type="text" id="encrypt-filename" placeholder="留空则使用原始文件名">
+                    <span class="filename-suffix">.kz</span>
+                </div>
+            </div>
+            <div class="progress-bar-container">
+                <div id="encrypt-progress" class="progress-bar"></div>
+            </div>
+            <div class="button-group">
+                <button id="start-encrypt-btn" class="btn glass-btn full-width-btn">开始加密</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="decrypt-modal" class="modal">
+        <div class="modal-content glassmorphic">
+            <span class="close-btn">&times;</span>
+            <h2>解密文件</h2>
+            <div class="input-group">
+                <label for="decrypt-password">输入密钥:</label>
+                <input type="password" id="decrypt-password" required>
+            </div>
+            <div class="input-group">
+                <label for="upload-key-input" class="file-label small-btn glass-btn">上传密钥文件</label>
+                <input type="file" id="upload-key-input" hidden>
+            </div>
+            <div class="progress-bar-container">
+                <div id="decrypt-progress" class="progress-bar"></div>
+            </div>
+            <div class="button-group">
+                <button id="start-decrypt-btn" class="btn glass-btn full-width-btn">开始解密</button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="success-animation-overlay" class="animation-overlay">
+        <div class="t-symbol-container">
+            <div class="t-line t-vertical"></div>
+            <div class="t-line t-horizontal"></div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
