@@ -1,11 +1,8 @@
 <?php
 
-// 导入核心逻辑
+
 require_once __DIR__ . '/../utils.php';
 
-// -----------------------------------------------------------------------------
-// API 路由
-// -----------------------------------------------------------------------------
 header('Content-Type: application/json');
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -43,11 +40,12 @@ if ($resultPath) {
     header('Content-Disposition: attachment; filename="' . basename($resultPath) . '"');
     header('Content-Length: ' . filesize($resultPath));
     readfile($resultPath);
-    unlink($resultPath); // 下载完成后删除文件
+    unlink($resultPath); 
     exit;
 } else {
     http_response_code(500);
     echo json_encode(['success' => false, 'message' => $message]);
     exit;
 }
+
 ?>
