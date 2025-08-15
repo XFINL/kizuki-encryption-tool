@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 $file = $_FILES['file'] ?? null;
 $password = $_POST['password'] ?? '';
-$action = basename($_SERVER['REQUEST_URI']); // 根据 URL 路径判断是加密还是解密
+$action = basename($_SERVER['REQUEST_URI']); 
 
 if (!$file || empty($password)) {
     http_response_code(400);
@@ -49,3 +49,4 @@ if ($resultPath) {
 }
 
 ?>
+
