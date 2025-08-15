@@ -1,19 +1,11 @@
 <?php
-
-// 导入核心逻辑
 require_once 'utils.php';
-
-// -----------------------------------------------------------------------------
-// 网页端路由
-// -----------------------------------------------------------------------------
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    // 显示主页面
     require_once 'templates/index.html';
     exit;
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
-    // 处理文件上传表单
     header('Content-Type: application/json');
     $file = $_FILES['file'] ?? null;
     $password = $_POST['password'] ?? '';
@@ -27,8 +19,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
 
     $tempPath = $file['tmp_name'];
     $originalFileName = $file['name'];
-
-    // 为了模拟 Python 的文件保存和处理流程，这里可以直接使用临时文件
     $savePath = __DIR__;
 
     if ($action === 'encrypt') {
@@ -50,9 +40,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     }
 }
 
-// -----------------------------------------------------------------------------
-// 网页端下载路由
-// -----------------------------------------------------------------------------
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['file'])) {
     $filePath = __DIR__ . DIRECTORY_SEPARATOR . basename($_GET['file']);
     if (file_exists($filePath)) {
@@ -61,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['file'])) {
         header('Content-Disposition: attachment; filename="' . basename($filePath) . '"');
         header('Content-Length: ' . filesize($filePath));
         readfile($filePath);
-        // 下载完成后，删除临时文件以保持环境整洁
+
         unlink($filePath);
         exit;
     } else {
@@ -71,9 +58,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['file'])) {
     }
 }
 
-// -----------------------------------------------------------------------------
-// 生成密钥路由
-// -----------------------------------------------------------------------------
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' && !isset($_POST['action'])) {
     header('Content-Type: application/json');
     echo json_encode(generateRandomKey());
@@ -82,4 +66,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SERVER['HTTP_X_REQUESTED_WI
 
 http_response_code(404);
 echo 'Not Found';
+
 ?>
